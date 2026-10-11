@@ -7,6 +7,8 @@ and the graphics are translated to Vulkan. No emulator window, no setup scripts:
 start `Bloodborne.exe`, pick your game folder and press **PLAY**.
 
 **[Download the latest version](https://github.com/Supermedo/bloodborne_pc/releases/latest)** · **[Join the Discord](https://discord.gg/yTMG8c4Bqm)**  **[Join X,com](https://x.com/SuperMedoPorts)**
+Check my other ports 
+https://nativeretro.com/
 
 > **No game files are included.** You need your own decrypted dump of Bloodborne
 > (CUSA03173). Version 1.09 is needed for the community patches (60/90/unlocked FPS,
