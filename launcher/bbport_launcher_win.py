@@ -203,7 +203,7 @@ READBACKS = [('', ('Relaxed (default)', 'Relaxed (по умолчанию)')), (
              ('2', ('Precise',))]
 # Frame cap of the unlocked mode (BB_FPS_LIMIT). '' leaves the port's own: the display refresh.
 FRAME_CAPS = [('', ('Auto: display refresh (recommended)', 'Авто: частота монитора (рекомендуется)')),
-              ('60', ('60',)), ('90', ('90',)), ('115', ('115',)),
+              ('60', ('60',)), ('90', ('90',)), ('120', ('120',)),
               ('120', ('120',)), ('144', ('144',)), ('165', ('165',)),
               ('240', ('240',)), ('0', ('No limit', 'Без ограничения'))]
 FRAMES_AHEAD = [('', ('1 (default)', '1 (по умолчанию)')), ('2', ('2',)), ('0', ('Unbounded', 'Без ограничения'))]
