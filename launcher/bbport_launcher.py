@@ -435,7 +435,7 @@ class LauncherWindow(Adw.ApplicationWindow):
         frames.add(self.fps_row)
         self.limit_row = Adw.SpinRow.new_with_range(0, 480, 1)
         self.limit_row.set_title(tr("Ограничение FPS"))
-        self.limit_row.set_subtitle(tr("0 — по частоте экрана (не выше 120 Гц); "
+        self.limit_row.set_subtitle(tr("0 — по частоте экрана; "
                                        "укажите число, чтобы ограничить иначе"))
         self.limit_row.set_value(self.settings["fps_limit"])
         frames.add(self.limit_row)

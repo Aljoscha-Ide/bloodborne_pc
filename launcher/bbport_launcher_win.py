@@ -201,11 +201,11 @@ DRAW_PIPE = [('', ('Auto (8+ threads)', 'Авто (8+ потоков)')), ('1', 
              ('0', ('Off (more stable)', 'Выключен (стабильнее)'))]
 READBACKS = [('', ('Relaxed (default)', 'Relaxed (по умолчанию)')), ('0', ('Off', 'Выключены')),
              ('2', ('Precise',))]
-# Frame cap of the unlocked mode (BB_FPS_LIMIT). '' leaves the port's own: the display refresh,
-# at most 120, because the game's movement timing breaks above about 120 FPS.
-FRAME_CAPS = [('', ('Auto: display refresh, max 120 (recommended)', 'Авто: частота монитора, макс. 120 (рекомендуется)')),
-              ('60', ('60',)), ('90', ('90',)), ('120', ('120',)), ('144', ('144  ⚠',)), ('165', ('165  ⚠',)),
-              ('240', ('240  ⚠',)), ('0', ('No limit  ⚠', 'Без ограничения  ⚠'))]
+# Frame cap of the unlocked mode (BB_FPS_LIMIT). '' leaves the port's own: the display refresh.
+FRAME_CAPS = [('', ('Auto: display refresh (recommended)', 'Авто: частота монитора (рекомендуется)')),
+              ('60', ('60',)), ('90', ('90',)), ('115', ('115',)),
+              ('120', ('120',)), ('144', ('144',)), ('165', ('165',)),
+              ('240', ('240',)), ('0', ('No limit', 'Без ограничения'))]
 FRAMES_AHEAD = [('', ('1 (default)', '1 (по умолчанию)')), ('2', ('2',)), ('0', ('Unbounded', 'Без ограничения'))]
 UI_LANGUAGES = bbport_lang.LANGUAGE_NAMES
 
@@ -827,10 +827,10 @@ class Launcher:
                    'Другие версии всегда работают в 30 FPS.'))
         self.row(f, _('Frame cap (unlocked mode)', 'Ограничение FPS (режим без ограничения)'),
                  self.choice(f, 'frame_cap', 'app', FRAME_CAPS),
-                 _("Above about 120 FPS the game's movement timing breaks (running and rolling get slower, "
-                   'physics and animations can glitch): higher caps are at your own risk.',
-                   'Выше ~120 FPS ломается тайминг движения игры (бег и перекаты замедляются, возможны '
-                   'сбои физики и анимаций): более высокие значения — на ваш риск.'))
+                 _("Auto uses the display's refresh rate. A lower cap gives steadier frame pacing when the "
+                   'game cannot hold it.',
+                   '«Авто» — по частоте экрана. Более низкое ограничение даёт более ровную подачу кадров, '
+                   'если игра её не держит.'))
         self.row(f, _('Frames ahead of the GPU', 'Кадров впереди GPU'), self.choice(f, 'frames_ahead', 'app', FRAMES_AHEAD),
                  _('1 keeps frame pacing even; more can raise FPS when the graphics card is the limit.',
                    '1 — ровная подача кадров; больше может поднять FPS, если упирается в видеокарту.'))

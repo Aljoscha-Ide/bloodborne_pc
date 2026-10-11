@@ -124,8 +124,8 @@ EN = {
     "Без ограничения (патч)": "Unlocked (patch)",
     "30 (как на PS4)": "30 (as on PS4)",
     "Ограничение FPS": "FPS limit",
-    "0 — по частоте экрана (не выше 120 Гц); укажите число, чтобы ограничить иначе":
-        "0: the display refresh rate (up to 120 Hz); set a number for another limit",
+    "0 — по частоте экрана; укажите число, чтобы ограничить иначе":
+        "0: the display refresh rate; set a number for another limit",
     # Performance
     "Производительность": "Performance",
     "Двухстадийный конвейер GPU": "Two-stage GPU pipeline",

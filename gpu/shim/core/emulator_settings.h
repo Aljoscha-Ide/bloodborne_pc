@@ -33,7 +33,8 @@ public:
     // bbport: BB_VBLANK_HZ=0 (uncapped presets): vblank runs at 480 Hz so a finished frame is
     // shown within ~2 ms instead of waiting for the next display-rate vblank (below the display
     // rate frames alternated 10/20 ms at 100 Hz: judder), and GetFrameLimit() caps the rate at
-    // the display refresh, at most 120 (above ~120 FPS movement timing breaks: running slows).
+    // the display refresh. (It was at most 120: above ~120 FPS sprinting slowed to half speed,
+    // the game's per-frame blocked-movement check; scripts/patches.py FRAME_RATE_FIXES fixes it.)
     // An explicit BB_VBLANK_HZ is used as given, without a limit (measurements).
     u32 GetVblankFrequency() {
         static const u32 value = [] {
@@ -47,7 +48,7 @@ public:
         static const u32 value = [] {
             const long limit = Number("BB_FPS_LIMIT", -1);
             if (limit >= 0) return u32(limit);
-            return Number("BB_VBLANK_HZ", 60) > 0 ? 0u : std::min<u32>(BbDisplayRefreshHz(), 120);
+            return Number("BB_VBLANK_HZ", 60) > 0 ? 0u : BbDisplayRefreshHz();
         }();
         return value;
     }

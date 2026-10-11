@@ -24,7 +24,7 @@ start `Bloodborne.exe`, pick your game folder and press **PLAY**.
   installs it. Your saves, settings and mods are kept.
 - **NVIDIA DLSS** on GeForce RTX cards (RTX 20 series and newer).
 - **AMD FSR 3.1 and FSR 4** upscaling, plus native-resolution TAA.
-- **Unlocked frame rate** with a frame cap (up to 120 by default), or 30/60/90 FPS.
+- **Unlocked frame rate** with a frame cap (the display refresh by default), or 30/60/90 FPS.
 - **Output resolutions** from 720p to 4K, presets from Native AA to Ultra Performance.
 - **Cheats page:** never die, stealth, silent footsteps, Rally that never fades, enemy control,
   and gameplay tweaks (camera distance, no camera auto-rotation, easier running, ragdoll
@@ -78,8 +78,6 @@ put its address in **Server address**.
 - Some AMD graphics cards still crash when the game world loads; fixes are in progress.
 - Online play is new. Messages, bloodstains and ghosts work; summoning other players with the
   bells has not been confirmed yet. Please report how it goes on Discord.
-- Above about 120 FPS the game's movement slows down (a limit of the game itself): keep the
-  frame cap at 120 or lower.
 
 ## Problems and feedback
 
