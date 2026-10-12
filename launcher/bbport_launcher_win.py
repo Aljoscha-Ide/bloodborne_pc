@@ -70,6 +70,29 @@ def attach_stdio():
         setattr(sys, name, stream or open(os.devnull, 'w'))
 
 
+class LossyStream:
+    """Output whose reader may be gone (a launcher that was closed): on Windows a write to such a
+    pipe fails with OSError [Errno 22], which stopped the game while it was being prepared."""
+
+    def __init__(self, stream):
+        self.stream = stream
+
+    def write(self, text):
+        try:
+            return self.stream.write(text)
+        except (OSError, ValueError):
+            return len(text)
+
+    def flush(self):
+        try:
+            self.stream.flush()
+        except (OSError, ValueError):
+            pass
+
+    def __getattr__(self, name):
+        return getattr(self.stream, name)
+
+
 def run_role(argv):
     """--run [args]: run.py; --script <file> [args]: a preparation script. Returns an exit code."""
     attach_stdio()
@@ -78,6 +101,7 @@ def run_role(argv):
             stream.reconfigure(line_buffering=True)
         except (AttributeError, ValueError):
             pass
+    sys.stdout, sys.stderr = LossyStream(sys.stdout), LossyStream(sys.stderr)
     if argv[0] == '--script':
         path, sys.argv = argv[1], argv[1:]
     else:
@@ -394,6 +418,7 @@ class Launcher:
         self.ini, self.ini_lines = load_ini()
         self.vars = {}
         self.process = self.job = None
+        self.hidden = False  # closed while the game runs: it exits with the game
         self.downloading = False
         self.output = queue.Queue()
         self.gpu_text = _('• Checking the graphics card…', '• Проверка видеокарты…')
@@ -1256,7 +1281,7 @@ class Launcher:
         self.status.configure(text=_('Preparing the game; it opens in its own window…',
                                      'Подготовка игры; она откроется в своём окне…'), fg=GOLD)
         if self.app.get('close_on_play'):
-            self.root.after(5000, self.root.destroy)  # the game keeps running
+            self.root.after(5000, lambda: self.process and self.close())
 
     def read_output(self, process):
         """Helper thread: the game's output to the Log page and to <saves folder>/last_run.log."""
@@ -1289,6 +1314,14 @@ class Launcher:
                         self.job.close()
                     self.stop_button.configure(state='disabled')
                     self.refresh_status()
+                    if self.hidden:
+                        if item[0] == 0:
+                            self.root.destroy()
+                            return
+                        # It stopped with an error: back with its log instead of vanishing.
+                        self.hidden = False
+                        self.root.deiconify()
+                        self.show('log')
                 else:
                     if 'Entering original x86-64 code' in item:
                         self.status.configure(text=_('The game is running.', 'Игра запущена.'), fg=GOLD)
@@ -1503,6 +1536,14 @@ class Launcher:
             self.collect()
         except Exception:  # never keep the window open over a settings problem
             pass
+        if self.process:
+            # The game's output still comes through this process (Log page, last_run.log). An
+            # exited launcher closed that pipe, and the next line a preparation script or the
+            # in-game restart printed failed (OSError: [Errno 22] Invalid argument): the game
+            # never started. Hidden instead, it exits with the game.
+            self.hidden = True
+            self.root.withdraw()
+            return
         self.root.destroy()
 
 
