@@ -41,6 +41,10 @@ https://nativeretro.com/
   desktop shortcut).
 - **Controller and keyboard**, an in-game settings menu (Insert or L3+R3), name entry on
   screen, a desktop shortcut, and a button to clear the shader cache.
+- **Keyboard and mouse:** remap keys and buttons on the Controls page, mouse look, and an
+  optional direct 1:1 mouse camera ([docs/INPUT.md](docs/INPUT.md)).
+- **Text and voice language** chosen separately, Brazilian Portuguese text included.
+- **Achievements page** in the launcher with the trophies you have earned, updated live.
 
 ## Requirements
 
