@@ -44,6 +44,8 @@ https://nativeretro.com/
 ## Requirements
 
 - Windows 10 (1903 or later) or Windows 11, 64-bit
+- An Intel Core 4th generation (Haswell, 2013) or newer, or an AMD Ryzen: the game uses
+  instructions of the PS4's processor (AVX, BMI1, MOVBE, LZCNT) that older CPUs lack
 - A graphics card with Vulkan 1.3 and a current driver
 - About 6 GB of free memory (RAM + page file), 10 GB for 1440p or 4K output
 - DLSS: NVIDIA GeForce RTX 20 series or newer
