@@ -80,13 +80,14 @@ put its address in **Server address**.
 
 ## Known issues
 
-- The character preview on the character creation screen stays empty. The character is
-  created correctly and looks right in the game.
-- Some AMD graphics cards still crash when the game world loads; fixes are in progress.
-- Online play is new. Messages, bloodstains and ghosts work; summoning other players with the
-  bells has not been confirmed yet. Please report how it goes on Discord.
-- Above about 120 FPS the game's movement slows down (a limit of the game itself): keep the
-  frame cap at 120 or lower.
+- Some AMD graphics cards may still crash when the game world loads; please send
+  `user\last_run.log` if yours does.
+- Online play is new. Messages, bloodstains, ghosts and summons with the bells work on the
+  default server; please report how it goes on Discord.
+- Keep the frame cap at 120 or lower. The sprint that stayed at half speed above 90 FPS is
+  fixed, but the game's own timing above 120 FPS has not been checked everywhere.
+- Intel 2nd and 3rd generation processors run with translated instructions (best effort):
+  a few rarely used ones are not translated yet.
 
 ## Problems and feedback
 
